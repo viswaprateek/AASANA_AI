@@ -1,6 +1,6 @@
 import './App.css';
 import { AppProvider } from './context/globalContext';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -11,11 +11,14 @@ function App() {
       <Router>
         <div className='container'>
           <Header />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-          </Routes>
-        
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route exact path='/about'>
+              <About />
+            </Route>
+          </Switch>
         </div>
       </Router>
     </AppProvider>
