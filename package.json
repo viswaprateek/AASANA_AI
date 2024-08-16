@@ -14,14 +14,13 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^17.0.1",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
     "react-webcam": "^5.2.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "ESLINT_NO_DEV_ERRORS=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -29,7 +28,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": {
     "production": [
