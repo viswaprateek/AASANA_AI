@@ -1,0 +1,68 @@
+import React from 'react';
+
+const About = () => {
+  return (
+    <>
+      <section id='about-sidebar-left'></section>
+      <section className='about-container'>
+        <div className='neu-card about-text'>
+          <ul>
+            <li>React Yoga - Do Yoga poses better!</li>
+            <li>This web app is developed using ReactJS and TensorflowJS</li>
+            <li>
+              For more info, please visit the&nbsp;
+              <a
+                href='#'
+                target='_blank'
+                rel='noreferrer'
+              >
+                GitHub repository
+              </a>
+            </li>
+            <li>
+              <img
+                src='/img/tfjs.png'
+                className='logo-tfjs'
+                alt='TensorFlowJS'
+              />
+              <img
+                src='/img/reactjs.png'
+                className='logo-reactjs'
+                alt='ReactJS'
+              />
+            </li>
+            <li>
+              Find me on: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                href='#'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src='/img/github.png'
+                  className='logo-github'
+                  alt='TensorFlowJS'
+                />
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                href='#'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src='/img/linkedin.png'
+                  className='logo-linkedin'
+                  alt='ReactJS'
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section id='about-sidebar-right'></section>
+    </>
+  );
+};
+
+export default About;
