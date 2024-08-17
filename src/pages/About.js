@@ -7,18 +7,7 @@ const About = () => {
       <section className='about-container'>
         <div className='neu-card about-text'>
           <ul>
-            <li>React Yoga - Do Yoga poses better!</li>
-            <li>This web app is developed using ReactJS and TensorflowJS</li>
-            <li>
-              For more info, please visit the&nbsp;
-              <a
-                href='#'
-                target='_blank'
-                rel='noreferrer'
-              >
-                GitHub repository
-              </a>
-            </li>
+           
             <li>
               <img
                 src='/img/tfjs.png'
@@ -31,32 +20,7 @@ const About = () => {
                 alt='ReactJS'
               />
             </li>
-            <li>
-              Find me on: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a
-                href='#'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  src='/img/github.png'
-                  className='logo-github'
-                  alt='TensorFlowJS'
-                />
-              </a>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a
-                href='#'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  src='/img/linkedin.png'
-                  className='logo-linkedin'
-                  alt='ReactJS'
-                />
-              </a>
-            </li>
+            
           </ul>
         </div>
       </section>

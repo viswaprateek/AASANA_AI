@@ -1,5 +1,6 @@
 import React from 'react';
 import {  Link } from 'raviger'
+import './Header.css'
 
 import DarkMode from './DarkMode';
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
     <header>
       <div className='heading-left-1'></div>
       <div className='heading-left-2'></div>
-      <span className='heading'>React Yoga</span>
+      <span className='heading'>AASANA-AI</span>
       <div className='link-wrapper'>
          <Link href="/">Home</Link>
         <Link href="/about">About</Link>
