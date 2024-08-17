@@ -28,22 +28,23 @@ export const AppProvider = ({ children }) => {
   const poses = [
     {
       id: 0,
+      name: 'Utthita Tadasana',
+      common_name: 'Star Pose',
+      img: '/img/star.png',
+    },
+    {
+      id: 1,
       name: 'Vrikshasana',
       common_name: 'Tree Pose',
       img: '/img/tree.png',
     },
     {
-      id: 1,
+      id: 2,
       name: 'Utkatasana',
       common_name: 'Chair Pose',
       img: '/img/chair.png',
-    },
-    {
-      id: 2,
-      name: 'Utthita Tadasana',
-      common_name: 'Star Pose',
-      img: '/img/star.png',
-    },
+    }
+   
   ];
   return (
     <AppContext.Provider

@@ -73,7 +73,7 @@ const Main = () => {
     intervalRef.current = newInterval;
 
     // Stop detecting after 10 seconds
-    setTimer(10);
+    setTimer(100);
     const timerVar = setInterval(() => {
       setTimer(timerRef.current - 1);
       if (timerRef.current === 0) {
@@ -151,11 +151,82 @@ const Main = () => {
       const ctx = canvas.current.getContext('2d');
       canvas.current.width = videoWidth;
       canvas.current.height = videoHeight;
-
+  
+      // Draw keypoints and skeleton
       drawKeypoints(pose['keypoints'], 0.5, ctx);
       drawSkeleton(pose['keypoints'], 0.5, ctx);
+  
+      // Calculate and draw the angle for the left leg (between right hip, left hip, and left knee)
+      const rightHip = pose.keypoints[12].position;
+      const leftHip = pose.keypoints[11].position;
+      const leftKnee = pose.keypoints[13].position;
+      const leftLegAngle = calculateAngle(rightHip, leftHip, leftKnee);
+  
+      ctx.beginPath();
+      ctx.moveTo(rightHip.x, rightHip.y);
+      ctx.lineTo(leftHip.x, leftHip.y);
+      ctx.lineTo(leftKnee.x, leftKnee.y);
+      ctx.strokeStyle = leftLegAngle >= 120 && leftLegAngle <= 150 ? 'green' : 'red';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.font = '20px Arial';
+      ctx.fillStyle = 'white';
+      ctx.fillText(`Left Leg Angle: ${leftLegAngle}°`, leftHip.x + 10, leftHip.y - 10);
+  
+      // Calculate and draw the angle for the right leg (between left hip, right hip, and right knee)
+      const rightKnee = pose.keypoints[14].position;
+      const rightLegAngle = calculateAngle(leftHip, rightHip, rightKnee);
+  
+      ctx.beginPath();
+      ctx.moveTo(leftHip.x, leftHip.y);
+      ctx.lineTo(rightHip.x, rightHip.y);
+      ctx.lineTo(rightKnee.x, rightKnee.y);
+      ctx.strokeStyle = rightLegAngle >= 120 && rightLegAngle <= 150 ? 'green' : 'red';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillText(`Right Leg Angle: ${rightLegAngle}°`, rightHip.x + 10, rightHip.y - 10);
+  
+      // Calculate and draw the angle for the left arm (between left hip, left shoulder, and left wrist)
+      const leftShoulder = pose.keypoints[5].position;
+      const leftWrist = pose.keypoints[9].position;
+      const leftArmAngle = calculateAngle(leftHip, leftShoulder, leftWrist);
+  
+      ctx.beginPath();
+      ctx.moveTo(leftHip.x, leftHip.y);
+      ctx.lineTo(leftShoulder.x, leftShoulder.y);
+      ctx.lineTo(leftWrist.x, leftWrist.y);
+      ctx.strokeStyle = leftArmAngle >= 110 && leftArmAngle <= 130 ? 'green' : 'red';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillText(`Left Arm Angle: ${leftArmAngle}°`, leftShoulder.x + 10, leftShoulder.y - 10);
+  
+      // Calculate and draw the angle for the right arm (between right hip, right shoulder, and right wrist)
+      const rightShoulder = pose.keypoints[6].position;
+      const rightWrist = pose.keypoints[10].position;
+      const rightArmAngle = calculateAngle(rightHip, rightShoulder, rightWrist);
+  
+      ctx.beginPath();
+      ctx.moveTo(rightHip.x, rightHip.y);
+      ctx.lineTo(rightShoulder.x, rightShoulder.y);
+      ctx.lineTo(rightWrist.x, rightWrist.y);
+      ctx.strokeStyle = rightArmAngle >= 110 && rightArmAngle <= 130 ? 'green' : 'red';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillText(`Right Arm Angle: ${rightArmAngle}°`, rightShoulder.x + 10, rightShoulder.y - 10);
     }
   };
+  
+  // Helper function to calculate the angle between three points
+  const calculateAngle = (pointA, pointB, pointC) => {
+    const AB = Math.sqrt(Math.pow(pointB.x - pointA.x, 2) + Math.pow(pointB.y - pointA.y, 2));
+    const BC = Math.sqrt(Math.pow(pointB.x - pointC.x, 2) + Math.pow(pointB.y - pointC.y, 2));
+    const AC = Math.sqrt(Math.pow(pointC.x - pointA.x, 2) + Math.pow(pointC.y - pointA.y, 2));
+  
+    const angle = Math.acos((AB * AB + BC * BC - AC * AC) / (2 * AB * BC)) * (180 / Math.PI);
+  
+    return Math.round(angle); // Round to nearest whole number for comparison
+  };
+  
 
   const updateScores = () => {
     setBestScores(
